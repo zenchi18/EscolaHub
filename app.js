@@ -24,7 +24,51 @@ function entrar() {
             document.getElementById('erro').textContent = 'Email ou senha errados.';
         });
 }
+function carregarAluno(uid, email) {
+    // Buscar nome
+    db.collection('users').doc(uid).get().then(doc => {
+        if (doc.exists) {
+            document.getElementById('nome-aluno').textContent = doc.data().nome;
+        } else {
+            document.getElementById('nome-aluno').textContent = email;
+        }
+    });
 
+    // Buscar notas
+    db.collection('notas').doc(uid).get().then(doc => {
+        const div = document.getElementById('notas');
+        if (doc.exists) {
+            const dados = doc.data();
+            let html = '';
+            for (let materia in dados) {
+                html += `<div class="nota-item"><span>${materia}</span><span class="nota-valor">${dados[materia]}</span></div>`;
+            }
+            div.innerHTML = html;
+        } else {
+            div.innerHTML = '<p style="color:#888;">Nenhuma nota registada.</p>';
+        }
+    });
+
+    // Buscar pauta
+    db.collection('users').doc(uid).get().then(doc => {
+        if (doc.exists && doc.data().turma) {
+            const turma = doc.data().turma;
+            db.collection('pautas').doc(turma).get().then(pautaDoc => {
+                const div = document.getElementById('pauta');
+                if (pautaDoc.exists) {
+                    const lista = pautaDoc.data().alunos || [];
+                    let html = '';
+                    lista.forEach(a => {
+                        html += `<div class="pauta-item"><span>${a.nome}</span><span class="pauta-media">${a.media}</span></div>`;
+                    });
+                    div.innerHTML = html;
+                } else {
+                    div.innerHTML = '<p style="color:#888;">Pauta não disponível.</p>';
+                }
+            });
+        }
+    });
+}
 function sair() {
     auth.signOut();
 }
@@ -68,6 +112,25 @@ function sair() {
 }
 
 function adicionarNota() {
-    document.getElementById('admin-msg').style.color = '#4caf50';
-    document.getElementById('admin-msg').textContent = 'Funcionalidade ativa na Sessão 8!';
+    const uid = document.getElementById('admin-uid').value;
+    const materia = document.getElementById('admin-materia').value;
+    const nota = parseFloat(document.getElementById('admin-nota').value);
+    
+    if (!uid || !materia || isNaN(nota)) {
+        document.getElementById('admin-msg').style.color = '#ff4444';
+        document.getElementById('admin-msg').textContent = 'Preenche todos os campos.';
+        return;
+    }
+
+    db.collection('notas').doc(uid).set({
+        [materia]: nota
+    }, { merge: true }).then(() => {
+        document.getElementById('admin-msg').style.color = '#4caf50';
+        document.getElementById('admin-msg').textContent = 'Nota guardada com sucesso!';
+        document.getElementById('admin-materia').value = '';
+        document.getElementById('admin-nota').value = '';
+    }).catch(err => {
+        document.getElementById('admin-msg').style.color = '#ff4444';
+        document.getElementById('admin-msg').textContent = 'Erro: ' + err.message;
+    });
 }
