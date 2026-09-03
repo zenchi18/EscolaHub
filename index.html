@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EscolaHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA LOGIN -->
+    <div id="tela-login" class="tela">
+        <div class="caixa">
+            <h1>🏫 ESCOLAHUB</h1>
+            <p class="sub">Plataforma de Notas</p>
+            <input type="email" id="email" placeholder="Email do aluno">
+            <input type="password" id="senha" placeholder="Senha">
+            <button onclick="entrar()">ENTRAR</button>
+            <p id="erro" class="erro"></p>
+        </div>
+    </div>
+
+    <!-- TELA ALUNO -->
+    <div id="tela-aluno" class="tela" style="display:none;">
+        <div class="topo">
+            <h2>ESCOLAHUB</h2>
+            <button onclick="sair()">SAIR</button>
+        </div>
+        <div class="conteudo">
+            <h3>👤 <span id="nome-aluno">Aluno</span></h3>
+            <div class="cartao">
+                <h4>📊 Notas do Trimestre</h4>
+                <div id="notas">Carregando...</div>
+            </div>
+            <div class="cartao">
+                <h4>📋 Pauta da Turma</h4>
+                <div id="pauta">Carregando...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA ADMIN -->
+    <div id="tela-admin" class="tela" style="display:none;">
+        <div class="topo">
+            <h2>ESCOLAHUB - ADMIN</h2>
+            <button onclick="sair()">SAIR</button>
+        </div>
+        <div class="conteudo">
+            <div class="cartao">
+                <h4>➕ Adicionar Nota</h4>
+                <input type="text" id="admin-uid" placeholder="UID do aluno">
+                <input type="text" id="admin-materia" placeholder="Matéria (ex: Matemática)">
+                <input type="number" id="admin-nota" placeholder="Nota (0-20)">
+                <button onclick="adicionarNota()">GUARDAR NOTA</button>
+                <p id="admin-msg"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
