@@ -1,0 +1,90 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.tela { width: 100%; min-height: 100vh; }
+
+.caixa {
+    max-width: 400px;
+    margin: 80px auto;
+    background: #141414;
+    border: 1px solid #c41e3a;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+h1 { color: #ffd700; font-size: 28px; margin-bottom: 5px; }
+.sub { color: #888; margin-bottom: 25px; font-size: 14px; }
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 14px;
+}
+
+input:focus { outline: none; border-color: #c41e3a; }
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #c41e3a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover { background: #a01830; }
+
+.erro { color: #ff4444; margin-top: 10px; font-size: 13px; }
+
+.topo {
+    background: #141414;
+    border-bottom: 2px solid #c41e3a;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topo h2 { color: #ffd700; font-size: 18px; }
+.topo button { width: auto; padding: 8px 20px; margin: 0; font-size: 13px; background: #333; }
+.topo button:hover { background: #c41e3a; }
+
+.conteudo { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+h3 { color: #ffd700; margin-bottom: 20px; font-size: 20px; }
+
+.cartao {
+    background: #141414;
+    border-left: 4px solid #ffd700;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.cartao h4 { color: #c41e3a; margin-bottom: 12px; font-size: 16px; }
+
+.nota-item, .pauta-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+}
+
+.nota-valor, .pauta-media { color: #ffd700; font-weight: bold; }
+
+#admin-msg { margin-top: 10px; font-size: 14px; }
