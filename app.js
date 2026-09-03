@@ -16,14 +16,40 @@ function entrar() {
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
     
-    // TESTE: se escrever "admin", vai para admin
+    auth.signInWithEmailAndPassword(email, senha)
+        .then(() => {
+            document.getElementById('erro').textContent = '';
+        })
+        .catch(err => {
+            document.getElementById('erro').textContent = 'Email ou senha errados.';
+        });
+}
+
+function sair() {
+    auth.signOut();
+}
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+        if (user.email === 'admin@escola.com') {
+            mostrar('tela-admin');
+        } else {
+            mostrar('tela-aluno');
+            carregarAluno(user.uid, user.email);
+        }
+    } else {
+        mostrar('tela-login');
+    }
+});function entrar() {
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
     if (email.includes('admin')) {
         mostrar('tela-admin');
     } else {
         mostrar('tela-aluno');
         document.getElementById('nome-aluno').textContent = email;
         
-        // Dados fake para veres como fica
         document.getElementById('notas').innerHTML = `
             <div class="nota-item"><span>Matemática</span><span class="nota-valor">14</span></div>
             <div class="nota-item"><span>Física</span><span class="nota-valor">12</span></div>
