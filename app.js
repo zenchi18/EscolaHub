@@ -1,17 +1,12 @@
 const firebaseConfig = {
-    apiKey: "PREENCHER_SESSAO_6",
-    authDomain: "PREENCHER_SESSAO_6",
-    projectId: "PREENCHER_SESSAO_6",
-    storageBucket: "PREENCHER_SESSAO_6",
-    messagingSenderId: "PREENCHER_SESSAO_6",
-    appId: "PREENCHER_SESSAO_6"
+  apiKey: "AIzaSyBy0TYD6b3pFRNO8ZX7J6B952QLRf8tGWk",
+  authDomain: "escolahub-8ea7a.firebaseapp.com",
+  projectId: "escolahub-8ea7a",
+  storageBucket: "escolahub-8ea7a.firebasestorage.app",
+  messagingSenderId: "743986431276",
+  appId: "1:743986431276:web:085e3f08ccd39065179889"
 };
-
-// Inicializar (vai dar erro até Sessão 6, é normal)
-// firebase.initializeApp(firebaseConfig);
-// const auth = firebase.auth();
-// const db = firebase.firestore();
-
+  const app = initializeApp(firebaseConfig);
 function mostrar(id) {
     document.querySelectorAll('.tela').forEach(t => t.style.display = 'none');
     document.getElementById(id).style.display = 'block';
